@@ -182,8 +182,8 @@
                         </connections>
                     </tableView>
                     <connections>
-                        <outlet property="followButton" destination="xHA-WN-YYq" id="FhM-5z-gTX"/>
-                        <outlet property="imageView" destination="Y63-Zc-Hcx" id="6T7-m4-VRB"/>
+                        <outlet property="followButton" destination="pLI-5F-Bw1" id="1y8-Zb-wJj"/>
+                        <outlet property="imageView" destination="Y63-Zc-Hcx" id="HUb-OY-FDi"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Yfi-2n-Cdq" userLabel="First Responder" sceneMemberID="firstResponder"/>

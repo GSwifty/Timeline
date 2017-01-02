@@ -12,7 +12,8 @@ class PostDetailTableViewController: UITableViewController {
     
     @IBOutlet weak var imageView: UIImageView!
     
-    @IBOutlet weak var followButton: UIToolbar!
+    @IBOutlet weak var followButton: UIBarButtonItem!
+    
     
     var post: Post?
     

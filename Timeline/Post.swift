@@ -11,8 +11,8 @@ import UIKit
 
 class Post {
     
-    let photoData: Data?
-    let timestamp: Date
+    var photoData: Data?
+    var timestamp: Date
     var comments: [Comment]
     var photo: UIImage? {
         guard let photoData = self.photoData else { return nil }

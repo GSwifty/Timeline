@@ -10,9 +10,9 @@ import Foundation
 
 class Comment {
     
-    let text: String
-    let timestamp: Date
-    let post: Post
+    var text: String
+    var timestamp: Date
+    var post: Post
     
     init(text: String, timestamp: Date = Date(), post: Post) {
         self.text = text

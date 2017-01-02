@@ -12,16 +12,17 @@ import UIKit
 class PostController {
     
     static let sharedController = PostController()
-
+    
     var posts: [Post] = []
     
-    // CRUD 
+    // CRUD
     
     func createPost(image: UIImage, caption: String) {
         guard let data = UIImageJPEGRepresentation(image, 0.7) else { return }
         let post = Post(photoData: data)
-        posts.append(post)
-        let captionText = addComment(post: post, commentText: caption)
+        addComment(post: post, commentText: caption)
+        self.posts.append(post)
+        
     }
     
     func addComment(post: Post, commentText: String) {
