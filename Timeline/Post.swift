@@ -7,3 +7,22 @@
 //
 
 import Foundation
+import UIKit
+
+class Post {
+    
+    let photoData: Data?
+    let timestamp: Date
+    var comments: [Comment]
+    var photo: UIImage? {
+        guard let photoData = self.photoData else { return nil }
+        return UIImage(data: photoData)
+    }
+    
+    init(photoData: Data?, timestamp: Date = Date(), comments: [Comment] = []){
+        self.photoData = photoData
+        self.timestamp = timestamp
+        self.comments = comments
+    }
+    
+}

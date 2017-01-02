@@ -8,20 +8,34 @@
 
 /* Begin PBXBuildFile section */
 		ACD20F3D1E1ADD8C0013141E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F3C1E1ADD8C0013141E /* AppDelegate.swift */; };
-		ACD20F3F1E1ADD8C0013141E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F3E1E1ADD8C0013141E /* ViewController.swift */; };
 		ACD20F421E1ADD8C0013141E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD20F401E1ADD8C0013141E /* Main.storyboard */; };
 		ACD20F441E1ADD8C0013141E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ACD20F431E1ADD8C0013141E /* Assets.xcassets */; };
 		ACD20F471E1ADD8C0013141E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ACD20F451E1ADD8C0013141E /* LaunchScreen.storyboard */; };
+		ACD20F4F1E1AEDA00013141E /* PostListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F4E1E1AEDA00013141E /* PostListTableViewController.swift */; };
+		ACD20F511E1AEEB90013141E /* PostDetailTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F501E1AEEB90013141E /* PostDetailTableViewController.swift */; };
+		ACD20F531E1AEF360013141E /* AddPostTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F521E1AEF360013141E /* AddPostTableViewController.swift */; };
+		ACD20F551E1AEF7C0013141E /* SearchResultsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F541E1AEF7C0013141E /* SearchResultsTableViewController.swift */; };
+		ACD20F581E1AEFED0013141E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F571E1AEFED0013141E /* Post.swift */; };
+		ACD20F5B1E1AF20D0013141E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F5A1E1AF20D0013141E /* Comment.swift */; };
+		ACD20F5D1E1AF3790013141E /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F5C1E1AF3790013141E /* PostController.swift */; };
+		ACD20F601E1AFAE60013141E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F5F1E1AFAE60013141E /* PostTableViewCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		ACD20F391E1ADD8C0013141E /* Timeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ACD20F3C1E1ADD8C0013141E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		ACD20F3E1E1ADD8C0013141E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ACD20F411E1ADD8C0013141E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ACD20F431E1ADD8C0013141E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ACD20F461E1ADD8C0013141E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		ACD20F481E1ADD8C0013141E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ACD20F4E1E1AEDA00013141E /* PostListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostListTableViewController.swift; sourceTree = "<group>"; };
+		ACD20F501E1AEEB90013141E /* PostDetailTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostDetailTableViewController.swift; sourceTree = "<group>"; };
+		ACD20F521E1AEF360013141E /* AddPostTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddPostTableViewController.swift; sourceTree = "<group>"; };
+		ACD20F541E1AEF7C0013141E /* SearchResultsTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResultsTableViewController.swift; sourceTree = "<group>"; };
+		ACD20F571E1AEFED0013141E /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		ACD20F5A1E1AF20D0013141E /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
+		ACD20F5C1E1AF3790013141E /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
+		ACD20F5F1E1AFAE60013141E /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,13 +69,44 @@
 			isa = PBXGroup;
 			children = (
 				ACD20F3C1E1ADD8C0013141E /* AppDelegate.swift */,
-				ACD20F3E1E1ADD8C0013141E /* ViewController.swift */,
 				ACD20F401E1ADD8C0013141E /* Main.storyboard */,
-				ACD20F431E1ADD8C0013141E /* Assets.xcassets */,
+				ACD20F5F1E1AFAE60013141E /* PostTableViewCell.swift */,
+				ACD20F5E1E1AF37F0013141E /* Model Controllers */,
+				ACD20F561E1AEF9A0013141E /* View Controllers */,
+				ACD20F591E1AEFF30013141E /* Model */,
 				ACD20F451E1ADD8C0013141E /* LaunchScreen.storyboard */,
+				ACD20F431E1ADD8C0013141E /* Assets.xcassets */,
 				ACD20F481E1ADD8C0013141E /* Info.plist */,
 			);
 			path = Timeline;
+			sourceTree = "<group>";
+		};
+		ACD20F561E1AEF9A0013141E /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ACD20F541E1AEF7C0013141E /* SearchResultsTableViewController.swift */,
+				ACD20F521E1AEF360013141E /* AddPostTableViewController.swift */,
+				ACD20F501E1AEEB90013141E /* PostDetailTableViewController.swift */,
+				ACD20F4E1E1AEDA00013141E /* PostListTableViewController.swift */,
+			);
+			name = "View Controllers";
+			sourceTree = "<group>";
+		};
+		ACD20F591E1AEFF30013141E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				ACD20F5A1E1AF20D0013141E /* Comment.swift */,
+				ACD20F571E1AEFED0013141E /* Post.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		ACD20F5E1E1AF37F0013141E /* Model Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				ACD20F5C1E1AF3790013141E /* PostController.swift */,
+			);
+			name = "Model Controllers";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -136,8 +181,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				ACD20F3F1E1ADD8C0013141E /* ViewController.swift in Sources */,
 				ACD20F3D1E1ADD8C0013141E /* AppDelegate.swift in Sources */,
+				ACD20F5D1E1AF3790013141E /* PostController.swift in Sources */,
+				ACD20F4F1E1AEDA00013141E /* PostListTableViewController.swift in Sources */,
+				ACD20F551E1AEF7C0013141E /* SearchResultsTableViewController.swift in Sources */,
+				ACD20F5B1E1AF20D0013141E /* Comment.swift in Sources */,
+				ACD20F581E1AEFED0013141E /* Post.swift in Sources */,
+				ACD20F531E1AEF360013141E /* AddPostTableViewController.swift in Sources */,
+				ACD20F511E1AEEB90013141E /* PostDetailTableViewController.swift in Sources */,
+				ACD20F601E1AFAE60013141E /* PostTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
