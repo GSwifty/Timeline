@@ -70,7 +70,7 @@
 			children = (
 				ACD20F3C1E1ADD8C0013141E /* AppDelegate.swift */,
 				ACD20F401E1ADD8C0013141E /* Main.storyboard */,
-				ACD20F5F1E1AFAE60013141E /* PostTableViewCell.swift */,
+				ACD20F611E1B13150013141E /* View */,
 				ACD20F5E1E1AF37F0013141E /* Model Controllers */,
 				ACD20F561E1AEF9A0013141E /* View Controllers */,
 				ACD20F591E1AEFF30013141E /* Model */,
@@ -107,6 +107,14 @@
 				ACD20F5C1E1AF3790013141E /* PostController.swift */,
 			);
 			name = "Model Controllers";
+			sourceTree = "<group>";
+		};
+		ACD20F611E1B13150013141E /* View */ = {
+			isa = PBXGroup;
+			children = (
+				ACD20F5F1E1AFAE60013141E /* PostTableViewCell.swift */,
+			);
+			name = View;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
