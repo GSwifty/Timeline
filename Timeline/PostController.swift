@@ -18,7 +18,7 @@ class PostController {
     // CRUD
     
     func createPost(image: UIImage, caption: String) {
-        guard let data = UIImageJPEGRepresentation(image, 0.7) else { return }
+        guard let data = UIImageJPEGRepresentation(image, 1.0) else { return }
         let post = Post(photoData: data)
         addComment(post: post, commentText: caption)
         self.posts.append(post)
