@@ -18,19 +18,26 @@ class AddPostTableViewController: UITableViewController {
     
     
     
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         
     }
     
     @IBAction func selectImageButtonTapped(_ sender: Any) {
         
-        if let image = image,
-            let caption = commentTextField.text {
-            PostController.sharedController.createPost(image: image, caption: caption)
+        imageView.image = #imageLiteral(resourceName: "devsample")
+        selectImageButton.setTitle("", for: .normal)
+    }
+    
+    @IBAction func addPostButtonTapped(_ sender: Any) {
         
+        if let image = imageView.image,
+        let caption = commentTextField.text, !caption.isEmpty {
+            PostController.sharedController.createPost(image: image, caption: caption)
+            dismiss(animated: true, completion: nil)
+            
         } else {
             
             let alertController = UIAlertController(title: "Missing Information", message: "You did not enter all required information!", preferredStyle: .alert)
@@ -41,11 +48,14 @@ class AddPostTableViewController: UITableViewController {
             
             present(alertController, animated: true, completion: nil)
         }
+        
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
+        dismiss(animated: true, completion: nil)
 
     }
     
-    @IBAction func addPostButtonTapped(_ sender: Any) {
-    }
     
     
     

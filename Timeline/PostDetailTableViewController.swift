@@ -22,12 +22,12 @@ class PostDetailTableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 50
         
+        updateView()
+        
     }
     
-    func updateViews() {
-        guard let post = post, isViewLoaded else { return }
-        
-        imageView.image = post.photo
+    func updateView() {
+        imageView.image = post?.photo
         tableView.reloadData()
     }
     

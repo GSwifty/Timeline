@@ -53,7 +53,7 @@
                     <navigationItem key="navigationItem" id="oX5-H4-5Jl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pTM-5U-S3G">
                             <connections>
-                                <segue destination="CHT-Vk-ENS" kind="presentation" id="NEm-3u-r1Y"/>
+                                <segue destination="2RH-J4-7ei" kind="show" id="wrN-Lk-kP5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -161,7 +161,13 @@
                             <outlet property="delegate" destination="CHT-Vk-ENS" id="dR0-eQ-8lg"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="nEA-le-PkU"/>
+                    <navigationItem key="navigationItem" id="nEA-le-PkU">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="GyY-uk-NYg">
+                            <connections>
+                                <action selector="cancelButtonTapped:" destination="CHT-Vk-ENS" id="iru-zR-TEQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="commentTextField" destination="siI-H4-OI6" id="bwP-h2-WKg"/>
                         <outlet property="imageView" destination="dQV-9D-5KJ" id="wV6-Wj-4fZ"/>
@@ -316,7 +322,4 @@
             <point key="canvasLocation" x="617" y="1674"/>
         </scene>
     </scenes>
-    <inferredMetricsTieBreakers>
-        <segue reference="hoS-HW-Sd9"/>
-    </inferredMetricsTieBreakers>
 </document>

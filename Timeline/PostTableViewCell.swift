@@ -11,11 +11,9 @@ import UIKit
 class PostTableViewCell: UITableViewCell {
     
     @IBOutlet weak var postImageView: UIImageView!
-
-    var post: Post?
     
-    func updateWithPost(){
-        postImageView.image = post?.photo
+    func update(withPost post: Post){
+        postImageView.image = post.photo
 
     }
 
