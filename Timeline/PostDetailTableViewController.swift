@@ -40,8 +40,51 @@ class PostDetailTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "commentCell", for: indexPath)
-
+        guard let post = post else { return cell }
+        let comment = post.comments[indexPath.row]
+        
+        cell.textLabel?.text = comment.text
+        return cell
+        
     }
+    
+    // Actions
+    
+    @IBAction func commentButtonTapped(_ sender: Any) {
+        
+        var commentTextField: UITextField?
+        
+        let alertController = UIAlertController(title: "Add Comment", message: "Enter a comment below", preferredStyle: .alert)
+        
+        alertController.addTextField { (textField) in
+            textField.placeholder = "Enter comment..."
+            commentTextField = textField
+        }
+        
+        let cancelAction = UIAlertAction(title: "Cancel", style: .cancel, handler: nil)
+        
+        let addCommentAction = UIAlertAction(title: "OK", style: .default) { (_) in
+            guard let comment = commentTextField?.text, !comment.isEmpty,
+            let post = self.post else { return }
+            
+            PostController.sharedController.addComment(post: post, commentText: comment)
+            self.tableView.reloadData()
+        }
+        
+        alertController.addAction(cancelAction)
+        alertController.addAction(addCommentAction)
+        
+        present(alertController, animated: true, completion: nil)
+        
+    }
+    
+    @IBAction func followButtonTapped(_ sender: Any) {
+    }
+    
+    @IBAction func shareButtonTapped(_ sender: Any) {
+    }
+    
+    
     
     
 }
