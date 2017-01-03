@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Comment {
+class Comment: SearchableRecord {
     
     var text: String
     var timestamp: Date
@@ -21,5 +21,7 @@ class Comment {
         
     }
     
-    
+    func matches(searchTerm: String) -> Bool {
+        return text.contains(searchTerm)
+    }   
 }

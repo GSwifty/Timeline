@@ -8,10 +8,14 @@
 
 import UIKit
 
-class PostListTableViewController: UITableViewController {
+class PostListTableViewController: UITableViewController, UISearchResultsUpdating {
+    
+    var searchController: UISearchController?
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        setupSearchController()
         
     }
     
@@ -35,6 +39,22 @@ class PostListTableViewController: UITableViewController {
         return cell
     }
     
+    //MARK: - Actions
+    
+    func setupSearchController() {
+        
+        let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsTableViewController")
+        
+        searchController = UISearchController(searchResultsController: resultsController)
+        searchController?.searchResultsUpdater = self
+        searchController?.searchBar.sizeToFit()
+        searchController?.hidesNavigationBarDuringPresentation = true
+        tableView.tableHeaderView = searchController?.searchBar
+        
+        definesPresentationContext = true
+        
+    }
+    
     
     
     
@@ -50,5 +70,7 @@ class PostListTableViewController: UITableViewController {
                 }
             }
         }
+        
+        if segue.identifier == 
     }
 }
