@@ -16,9 +16,6 @@ class AddPostTableViewController: UITableViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var commentTextField: UITextField!
     
-    
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -54,9 +51,5 @@ class AddPostTableViewController: UITableViewController {
     @IBAction func cancelButtonTapped(_ sender: Any) {
         dismiss(animated: true, completion: nil)
 
-    }
-    
-    
-    
-    
+    }  
 }
