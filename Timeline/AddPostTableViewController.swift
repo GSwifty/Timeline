@@ -12,9 +12,7 @@ class AddPostTableViewController: UITableViewController {
     
     var image: UIImage?
     
-    @IBOutlet weak var selectImageButton: UIButton!
-    @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var commentTextField: UITextField!
+        @IBOutlet weak var commentTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -22,15 +20,9 @@ class AddPostTableViewController: UITableViewController {
         
     }
     
-    @IBAction func selectImageButtonTapped(_ sender: Any) {
-        
-        imageView.image = #imageLiteral(resourceName: "devsample")
-        selectImageButton.setTitle("", for: .normal)
-    }
-    
     @IBAction func addPostButtonTapped(_ sender: Any) {
         
-        if let image = imageView.image,
+        if let image = image,
         let caption = commentTextField.text, !caption.isEmpty {
             PostController.sharedController.createPost(image: image, caption: caption)
             dismiss(animated: true, completion: nil)
@@ -53,3 +45,5 @@ class AddPostTableViewController: UITableViewController {
 
     }  
 }
+
+

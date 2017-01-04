@@ -55,9 +55,15 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         
     }
     
-    
-    
-    
+    func updateSearchResults(for searchController: UISearchController) {
+        if let resultsViewController = searchController.searchResultsController as? SearchResultsTableViewController,
+            let searchTerm = searchController.searchBar.text?.lowercased() {
+            let posts = PostController.sharedController.posts
+            let filteredPosts = posts.filter {$0.matches(searchTerm: searchTerm) }.map { $0 as SearchableRecord }
+            resultsViewController.resultsArray = filteredPosts
+            resultsViewController.tableView.reloadData()
+        }
+    }
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -71,6 +77,15 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
             }
         }
         
-        if segue.identifier == 
+        if segue.identifier == "toPostDetailFromSearch" {
+            if let detailViewController = segue.destination as? PostDetailTableViewController,
+                let sender = sender as? PostTableViewCell,
+                let indexPath = (searchController?.searchResultsController as? SearchResultsTableViewController)?.tableView.indexPath(for: sender),
+                let searchTerm = searchController?.searchBar.text?.lowercased() {
+                let posts = PostController.sharedController.posts.filter({ $0.matches(searchTerm: searchTerm) } )
+                let post = posts[indexPath.row]
+                detailViewController.post = post
+            }
+        }
     }
 }

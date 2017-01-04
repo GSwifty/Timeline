@@ -77,29 +77,21 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="350"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fTr-lY-xiK" id="LPn-4S-KNP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="349.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-Bi-efm">
+                                                <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t06-br-jIP">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
-                                                    <state key="normal" title="Select Image"/>
                                                     <connections>
-                                                        <action selector="selectImageButtonTapped:" destination="CHT-Vk-ENS" eventType="touchUpInside" id="glz-cy-qrR"/>
+                                                        <segue destination="kZt-7a-fGM" kind="embed" id="HeS-IA-rcY"/>
                                                     </connections>
-                                                </button>
-                                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-9D-5KJ">
-                                                    <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
-                                                </imageView>
+                                                </containerView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="dQV-9D-5KJ" firstAttribute="top" secondItem="LPn-4S-KNP" secondAttribute="top" id="LBJ-rI-Lo4"/>
-                                                <constraint firstItem="Ic9-Bi-efm" firstAttribute="top" secondItem="LPn-4S-KNP" secondAttribute="top" id="Uco-20-3p1"/>
-                                                <constraint firstItem="Ic9-Bi-efm" firstAttribute="leading" secondItem="LPn-4S-KNP" secondAttribute="leading" id="gKj-O0-8xi"/>
-                                                <constraint firstAttribute="trailing" secondItem="dQV-9D-5KJ" secondAttribute="trailing" id="gOH-ez-zWn"/>
-                                                <constraint firstAttribute="trailing" secondItem="Ic9-Bi-efm" secondAttribute="trailing" id="nty-SH-GZx"/>
-                                                <constraint firstAttribute="bottom" secondItem="Ic9-Bi-efm" secondAttribute="bottom" id="rWB-iJ-Uq8"/>
-                                                <constraint firstAttribute="bottom" secondItem="dQV-9D-5KJ" secondAttribute="bottom" id="t5m-th-w4A"/>
-                                                <constraint firstItem="dQV-9D-5KJ" firstAttribute="leading" secondItem="LPn-4S-KNP" secondAttribute="leading" id="vmb-m1-bMV"/>
+                                                <constraint firstItem="t06-br-jIP" firstAttribute="leading" secondItem="LPn-4S-KNP" secondAttribute="leading" id="8ky-6y-MIL"/>
+                                                <constraint firstItem="t06-br-jIP" firstAttribute="top" secondItem="LPn-4S-KNP" secondAttribute="top" id="Bze-2C-joj"/>
+                                                <constraint firstAttribute="bottom" secondItem="t06-br-jIP" secondAttribute="bottom" id="UaE-1m-NDy"/>
+                                                <constraint firstAttribute="trailing" secondItem="t06-br-jIP" secondAttribute="trailing" id="mst-vr-iqa"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -323,6 +315,47 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JuU-p9-eo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="617" y="1674"/>
+        </scene>
+        <!--Photo Select View Controller-->
+        <scene sceneID="eN7-VV-eY9">
+            <objects>
+                <viewController id="kZt-7a-fGM" customClass="PhotoSelectViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Q3T-ue-hzb">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="dQV-9D-5KJ">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ic9-Bi-efm">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
+                                <state key="normal" title="Select Image"/>
+                                <connections>
+                                    <action selector="selectImageButtonTapped:" destination="kZt-7a-fGM" eventType="touchUpInside" id="KA3-Vf-eAX"/>
+                                    <action selector="selectImageButtonTapped:" destination="CHT-Vk-ENS" eventType="touchUpInside" id="glz-cy-qrR"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="dQV-9D-5KJ" secondAttribute="trailing" id="Ydm-91-u5U"/>
+                            <constraint firstItem="Ic9-Bi-efm" firstAttribute="leading" secondItem="Q3T-ue-hzb" secondAttribute="leading" id="cxL-10-QSA"/>
+                            <constraint firstAttribute="trailing" secondItem="Ic9-Bi-efm" secondAttribute="trailing" id="frB-2H-uPf"/>
+                            <constraint firstAttribute="bottom" secondItem="dQV-9D-5KJ" secondAttribute="bottom" id="nJh-Dx-gFh"/>
+                            <constraint firstItem="dQV-9D-5KJ" firstAttribute="top" secondItem="Q3T-ue-hzb" secondAttribute="top" id="qWA-Wr-JDs"/>
+                            <constraint firstAttribute="bottom" secondItem="Ic9-Bi-efm" secondAttribute="bottom" id="sPJ-Zi-MC6"/>
+                            <constraint firstItem="dQV-9D-5KJ" firstAttribute="leading" secondItem="Q3T-ue-hzb" secondAttribute="leading" id="sQt-66-ymY"/>
+                            <constraint firstItem="Ic9-Bi-efm" firstAttribute="top" secondItem="Q3T-ue-hzb" secondAttribute="top" id="xap-Jh-I0e"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="imageView" destination="dQV-9D-5KJ" id="AUO-LV-L1y"/>
+                        <outlet property="selectImageButton" destination="Ic9-Bi-efm" id="2da-JM-c8g"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="527-qQ-qzn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2431" y="884"/>
         </scene>
     </scenes>
 </document>
