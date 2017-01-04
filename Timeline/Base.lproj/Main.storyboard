@@ -77,13 +77,13 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="350"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fTr-lY-xiK" id="LPn-4S-KNP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="349.5"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t06-br-jIP">
                                                     <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
                                                     <connections>
-                                                        <segue destination="kZt-7a-fGM" kind="embed" id="HeS-IA-rcY"/>
+                                                        <segue destination="kZt-7a-fGM" kind="embed" identifier="embedPhotoSelect" id="HeS-IA-rcY"/>
                                                     </connections>
                                                 </containerView>
                                             </subviews>
@@ -291,7 +291,7 @@
         <!--Search Results Table View Controller-->
         <scene sceneID="es5-eu-Gn8">
             <objects>
-                <tableViewController id="NOx-M0-QRb" customClass="SearchResultsTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="SearchResultsTableViewController" id="NOx-M0-QRb" customClass="SearchResultsTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="re7-D1-WgI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -320,6 +320,10 @@
         <scene sceneID="eN7-VV-eY9">
             <objects>
                 <viewController id="kZt-7a-fGM" customClass="PhotoSelectViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="lXm-Ts-sUQ"/>
+                        <viewControllerLayoutGuide type="bottom" id="B2l-UM-1WF"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Q3T-ue-hzb">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
