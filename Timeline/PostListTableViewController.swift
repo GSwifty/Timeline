@@ -16,6 +16,10 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         super.viewDidLoad()
         
         setupSearchController()
+        requestFullSync()
+        
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(postsChanged(notification:)), name: PostController.PostsChangedNotification, object: nil)
         
     }
     
@@ -41,6 +45,11 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
     
     //MARK: - Actions
     
+    
+    func postsChanged(notification: NSNotification) {
+        tableView.reloadData()
+    }
+    
     func setupSearchController() {
         
         let resultsController = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "SearchResultsTableViewController")
@@ -64,6 +73,29 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
             resultsViewController.tableView.reloadData()
         }
     }
+    
+    func requestFullSync(completion: (() -> Void)? = nil) {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
+        
+        PostController.sharedController.performFullSync() {
+        
+        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            if let completion = completion {
+                completion()
+            }
+        }
+    }
+    
+    @IBAction func refreshControlActivated(_ sender: Any) {
+        requestFullSync {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
+    
+    
     // MARK: - Navigation
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation

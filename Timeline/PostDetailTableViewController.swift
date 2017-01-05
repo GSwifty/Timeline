@@ -24,11 +24,20 @@ class PostDetailTableViewController: UITableViewController {
         
         updateView()
         
+        let nc = NotificationCenter.default
+        nc.addObserver(self, selector: #selector(postCommentsChanged(notification:)), name: PostController.PostCommentsChangedNotification, object: nil)
+        
     }
     
     func updateView() {
         imageView.image = post?.photo
         tableView.reloadData()
+    }
+    
+    func postCommentsChanged(notification: NSNotification) {
+        guard let notificationPost = notification.object as? Post,
+            let post = post, notificationPost === post else { return }
+        updateView()
     }
     
     // MARK: - Table view data source
