@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AC157E351E1F024C00764541 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC157E341E1F024C00764541 /* CloudKitManager.swift */; };
 		AC32CA381E1C6C8F00972687 /* PhotoSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AC32CA371E1C6C8F00972687 /* PhotoSelectViewController.swift */; };
 		ACA6EF591E1C4D1B00793B6E /* SearchableRecord.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACA6EF581E1C4D1B00793B6E /* SearchableRecord.swift */; };
 		ACD20F3D1E1ADD8C0013141E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F3C1E1ADD8C0013141E /* AppDelegate.swift */; };
@@ -21,13 +22,13 @@
 		ACD20F5B1E1AF20D0013141E /* Comment.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F5A1E1AF20D0013141E /* Comment.swift */; };
 		ACD20F5D1E1AF3790013141E /* PostController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F5C1E1AF3790013141E /* PostController.swift */; };
 		ACD20F601E1AFAE60013141E /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACD20F5F1E1AFAE60013141E /* PostTableViewCell.swift */; };
-		ACDEA3FC1E1D7B4E0007D996 /* CloudKitManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDEA3FB1E1D7B4E0007D996 /* CloudKitManager.swift */; };
 		ACDEA3FE1E1DA2410007D996 /* CloudKitSyncable.swift in Sources */ = {isa = PBXBuildFile; fileRef = ACDEA3FD1E1DA2410007D996 /* CloudKitSyncable.swift */; };
 		ACDEA4001E1E04D40007D996 /* CloudKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = ACDEA3FF1E1E04D40007D996 /* CloudKit.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		AC1060161E1B77AF003F6086 /* Timeline.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Timeline.entitlements; sourceTree = "<group>"; };
+		AC157E341E1F024C00764541 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		AC32CA371E1C6C8F00972687 /* PhotoSelectViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PhotoSelectViewController.swift; sourceTree = "<group>"; };
 		ACA6EF581E1C4D1B00793B6E /* SearchableRecord.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchableRecord.swift; sourceTree = "<group>"; };
 		ACD20F391E1ADD8C0013141E /* Timeline.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Timeline.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -44,7 +45,6 @@
 		ACD20F5A1E1AF20D0013141E /* Comment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Comment.swift; sourceTree = "<group>"; };
 		ACD20F5C1E1AF3790013141E /* PostController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostController.swift; sourceTree = "<group>"; };
 		ACD20F5F1E1AFAE60013141E /* PostTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = "<group>"; };
-		ACDEA3FB1E1D7B4E0007D996 /* CloudKitManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitManager.swift; sourceTree = "<group>"; };
 		ACDEA3FD1E1DA2410007D996 /* CloudKitSyncable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CloudKitSyncable.swift; sourceTree = "<group>"; };
 		ACDEA3FF1E1E04D40007D996 /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -67,6 +67,25 @@
 				ACDEA3FF1E1E04D40007D996 /* CloudKit.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AC157E361E1F10A900764541 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				ACD20F451E1ADD8C0013141E /* LaunchScreen.storyboard */,
+				ACD20F431E1ADD8C0013141E /* Assets.xcassets */,
+				ACD20F481E1ADD8C0013141E /* Info.plist */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		AC157E371E1F10EB00764541 /* CloudKitManager */ = {
+			isa = PBXGroup;
+			children = (
+				AC157E341E1F024C00764541 /* CloudKitManager.swift */,
+				ACDEA3FD1E1DA2410007D996 /* CloudKitSyncable.swift */,
+			);
+			name = CloudKitManager;
 			sourceTree = "<group>";
 		};
 		ACD20F301E1ADD8C0013141E = {
@@ -92,16 +111,12 @@
 				AC1060161E1B77AF003F6086 /* Timeline.entitlements */,
 				ACD20F3C1E1ADD8C0013141E /* AppDelegate.swift */,
 				ACD20F401E1ADD8C0013141E /* Main.storyboard */,
-				ACA6EF581E1C4D1B00793B6E /* SearchableRecord.swift */,
-				ACDEA3FB1E1D7B4E0007D996 /* CloudKitManager.swift */,
-				ACDEA3FD1E1DA2410007D996 /* CloudKitSyncable.swift */,
+				AC157E371E1F10EB00764541 /* CloudKitManager */,
 				ACD20F611E1B13150013141E /* View */,
 				ACD20F5E1E1AF37F0013141E /* Model Controllers */,
 				ACD20F561E1AEF9A0013141E /* View Controllers */,
 				ACD20F591E1AEFF30013141E /* Model */,
-				ACD20F451E1ADD8C0013141E /* LaunchScreen.storyboard */,
-				ACD20F431E1ADD8C0013141E /* Assets.xcassets */,
-				ACD20F481E1ADD8C0013141E /* Info.plist */,
+				AC157E361E1F10A900764541 /* Resources */,
 			);
 			path = Timeline;
 			sourceTree = "<group>";
@@ -123,6 +138,7 @@
 			children = (
 				ACD20F5A1E1AF20D0013141E /* Comment.swift */,
 				ACD20F571E1AEFED0013141E /* Post.swift */,
+				ACA6EF581E1C4D1B00793B6E /* SearchableRecord.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -226,7 +242,6 @@
 			files = (
 				ACA6EF591E1C4D1B00793B6E /* SearchableRecord.swift in Sources */,
 				ACD20F3D1E1ADD8C0013141E /* AppDelegate.swift in Sources */,
-				ACDEA3FC1E1D7B4E0007D996 /* CloudKitManager.swift in Sources */,
 				ACD20F5D1E1AF3790013141E /* PostController.swift in Sources */,
 				ACDEA3FE1E1DA2410007D996 /* CloudKitSyncable.swift in Sources */,
 				ACD20F4F1E1AEDA00013141E /* PostListTableViewController.swift in Sources */,
@@ -237,6 +252,7 @@
 				ACD20F531E1AEF360013141E /* AddPostTableViewController.swift in Sources */,
 				ACD20F511E1AEEB90013141E /* PostDetailTableViewController.swift in Sources */,
 				ACD20F601E1AFAE60013141E /* PostTableViewCell.swift in Sources */,
+				AC157E351E1F024C00764541 /* CloudKitManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -30,8 +30,18 @@ class PostDetailTableViewController: UITableViewController {
     }
     
     func updateView() {
+        
         imageView.image = post?.photo
         tableView.reloadData()
+        
+        guard let post = post else { return }
+        
+        PostController.sharedController.checkSubscriptionToPostComments(post: post) { (subscribed) in
+            
+            DispatchQueue.main.async {
+                self.followButton.title = subscribed ? "Unfollow " : "Follow"
+            }
+        }
     }
     
     func postCommentsChanged(notification: NSNotification) {
@@ -87,10 +97,29 @@ class PostDetailTableViewController: UITableViewController {
         
     }
     
+    func presentActivityViewController() {
+        
+        guard let photo = post?.photo,
+            let comment = post?.comments.first else { return }
+        
+        let text = comment.text
+        let activityViewController = UIActivityViewController(activityItems: [photo, text], applicationActivities: nil)
+        
+        present(activityViewController, animated: true, completion: nil)
+    }
+    
     @IBAction func followButtonTapped(_ sender: Any) {
+        
+        guard let post = post else { return }
+        PostController.sharedController.togglePostCommentSubscription(post: post) { (_, _, _) in
+            self.updateView()
+        }
+        
     }
     
     @IBAction func shareButtonTapped(_ sender: Any) {
+        
+        presentActivityViewController()
     }
     
     

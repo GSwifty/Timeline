@@ -16,6 +16,7 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         super.viewDidLoad()
         
         setupSearchController()
+        
         requestFullSync()
         
         if tableView.numberOfRows(inSection: 0) > 0 {
@@ -26,14 +27,7 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        tableView.reloadData()
-    }
-    
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return PostController.sharedController.posts.count
     }
     
@@ -78,6 +72,13 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         }
     }
     
+    
+    @IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
+        requestFullSync {
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
     func requestFullSync(_ completion: (() -> Void)? = nil) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
@@ -87,13 +88,6 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
             UIApplication.shared.isNetworkActivityIndicatorVisible = false
             
             completion?()
-        }
-    }
-    
-    
-    @IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
-        requestFullSync {
-            self.refreshControl?.endRefreshing()
         }
     }
     
