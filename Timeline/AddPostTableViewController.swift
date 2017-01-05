@@ -24,9 +24,10 @@ class AddPostTableViewController: UITableViewController {
         
         if let image = image,
             let caption = commentTextField.text, !caption.isEmpty {
-            PostController.sharedController.createPost(image: image, caption: caption) { (_) in
+            
+            PostController.sharedController.createPost(image: image, caption: caption)
             self.dismiss(animated: true, completion: nil)
-            }
+            
         } else {
             
             let alertController = UIAlertController(title: "Missing Information", message: "You did not enter all required information!", preferredStyle: .alert)

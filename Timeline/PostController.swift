@@ -10,6 +10,11 @@ import Foundation
 import UIKit
 import CloudKit
 
+extension PostController {
+    static let PostsChangedNotification = Notification.Name("PostsChangedNotification")
+    static let PostCommentsChangedNotification = Notification.Name("PostCommentsChangedNotification")
+}
+
 class PostController {
     
     static let sharedController = PostController()
@@ -23,26 +28,32 @@ class PostController {
         }
     }
     
-    var comments: [Comment] = []
+    var comments: [Comment] {
+        return posts.flatMap { $0.comments }
+    }
+    
+    var sortedPosts: [Post] {
+        return posts.sorted(by: { return $0.timestamp.compare($1.timestamp as Date) == .orderedAscending })
+    }
     
     var isSyncing: Bool = false
     
-    let cloudKitManager = CloudKitManager()
+    var cloudKitManager = CloudKitManager()
     
-    static let PostsChangedNotification = Notification.Name("PostsChangedNotification")
-    static let PostCommentsChangedNotification = Notification.Name("PostCommentsChangedNotification")
+    
     
     init(){
         
-        performFullSync()
+        self.cloudKitManager = CloudKitManager()
     }
     
     // CRUD
     
-    func createPost(image: UIImage, caption: String, completion: ((Post) -> Void)?) {
+    func createPost(image: UIImage, caption: String, completion: ((Post) -> Void)? = nil)
+    {
         guard let data = UIImageJPEGRepresentation(image, 1.0) else { return }
         let post = Post(photoData: data)
-        addComment(post: post, commentText: caption)
+        let captionComment = addComment(post: post, commentText: caption)
         
         cloudKitManager.save(record: CKRecord(post)) { (record, error) in
             guard let record = record else {
@@ -54,15 +65,26 @@ class PostController {
                 return
             }
             post.cloudKitRecordID = record.recordID
+            
         }
         
+        self.cloudKitManager.save(record: CKRecord(captionComment)) { (record, error) in
+            if let error = error {
+                print("Error saving new comment to CloudKit: \(error)")
+                return
+            }
+            captionComment.cloudKitRecordID = record?.recordID
+            completion?(post)
+        }
     }
     
     @discardableResult func addComment(post: Post, commentText: String, completion: @escaping ((Comment) -> Void) = { _ in }) -> Comment {
         let comment = Comment(text: commentText, post: post)
         post.comments.append(comment)
         
-        cloudKitManager.save(record: CKRecord(comment)) { (record, error) in
+        let record = CKRecord(comment)
+        
+        cloudKitManager.save(record: record) { (record, error) in
             if let error = error {
                 print("Error saving new comment to CloudKit: \(error)")
                 return
@@ -156,17 +178,16 @@ class PostController {
         
         let unsavedRecords = Array(unsavedObjectsByRecord.keys)
         
-        cloudKitManager.save(records: unsavedRecords, perRecordCompletion: { (record, error) in
+        cloudKitManager.saveRecords(unsavedRecords, perRecordCompletion: { (record, error) in
             
             guard let record = record else { return }
             unsavedObjectsByRecord[record]?.cloudKitRecordID = record.recordID
             
-            
         }) { (records, error) in
+            
             let success = records != nil
             completion(success, error)
         }
-        
     }
     
     //MARK: - Sync

@@ -18,6 +18,9 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         setupSearchController()
         requestFullSync()
         
+        if tableView.numberOfRows(inSection: 0) > 0 {
+            tableView.scrollToRow(at: IndexPath(row: 0, section: 0), at: .top, animated: false)
+        }
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(postsChanged(notification:)), name: PostController.PostsChangedNotification, object: nil)
         
@@ -31,14 +34,15 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         // #warning Incomplete implementation, return the number of rows
-        return PostController.sharedController.posts.count    }
+        return PostController.sharedController.posts.count
+    }
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "postCell", for: indexPath) as? PostTableViewCell else { return PostTableViewCell() }
         
-        let post = PostController.sharedController.posts[indexPath.row]
-        cell.update(withPost: post)
+        let posts = PostController.sharedController.posts
+        cell.post = posts[indexPath.row]
         
         return cell
     }
@@ -74,21 +78,20 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         }
     }
     
-    func requestFullSync(completion: (() -> Void)? = nil) {
+    func requestFullSync(_ completion: (() -> Void)? = nil) {
         
         UIApplication.shared.isNetworkActivityIndicatorVisible = true
         
-        PostController.sharedController.performFullSync() {
-        
-        UIApplication.shared.isNetworkActivityIndicatorVisible = false
+        PostController.sharedController.performFullSync {
             
-            if let completion = completion {
-                completion()
-            }
+            UIApplication.shared.isNetworkActivityIndicatorVisible = false
+            
+            completion?()
         }
     }
     
-    @IBAction func refreshControlActivated(_ sender: Any) {
+    
+    @IBAction func refreshControlValueChanged(_ sender: UIRefreshControl) {
         requestFullSync {
             self.refreshControl?.endRefreshing()
         }

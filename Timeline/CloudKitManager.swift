@@ -6,12 +6,16 @@
 //  Copyright © 2017 GK. All rights reserved.
 //
 
-import Foundation
+import UIKit
 import CloudKit
 
 class CloudKitManager {
     
     static let sharedController = CloudKitManager()
+    
+    init() {
+        checkCloudKitAvailability()
+    }
     
     let publicDatabase = CKContainer.default().publicCloudDatabase
     
@@ -23,8 +27,26 @@ class CloudKitManager {
         }
     }
     
-    func save(records:[CKRecord], perRecordCompletion: ((CKRecord?, Error?) -> Void)?, completion: (([CKRecord]?, _ error: Error?) -> Void)?) {
+    func saveRecords(_ records: [CKRecord], perRecordCompletion: ((_ record: CKRecord?, _ error: Error?) -> Void)?, completion: ((_ records: [CKRecord]?, _ error: Error?) -> Void)?) {
         
+        modifyRecords(records, perRecordCompletion: perRecordCompletion, completion: completion)
+    }
+
+    
+    func modifyRecords(_ records: [CKRecord], perRecordCompletion: ((_ record: CKRecord?, _ error: Error?) -> Void)?, completion: ((_ records: [CKRecord]?, _ error: Error?) -> Void)?) {
+        
+        let operation = CKModifyRecordsOperation(recordsToSave: records, recordIDsToDelete: nil)
+        operation.savePolicy = .changedKeys
+        operation.queuePriority = .high
+        operation.qualityOfService = .userInteractive
+        
+        operation.perRecordCompletionBlock = perRecordCompletion
+        
+        operation.modifyRecordsCompletionBlock = { (records, recordIDs, error) -> Void in
+            (completion?(records, error))!
+        }
+        
+        publicDatabase.add(operation)
     }
     
     // FETCH RECORD FUNCTIONS
@@ -85,6 +107,60 @@ class CloudKitManager {
         //        }
         
     }
+    
+    func checkCloudKitAvailability() {
+        
+        CKContainer.default().accountStatus() {
+            (accountStatus:CKAccountStatus, error:Error?) -> Void in
+            
+            switch accountStatus {
+            case .available:
+                print("CloudKit available. Initializing full sync.")
+                return
+            default:
+                self.handleCloudKitUnavailable(accountStatus, error: error)
+            }
+        }
+    } // Is CloudKit available?
+    
+    func handleCloudKitUnavailable(_ accountStatus: CKAccountStatus, error:Error?) {
+        
+        var errorText = "Synchronization is disabled\n"
+        if let error = error {
+            print("handleCloudKitUnavailable ERROR: \(error)")
+            print("An error occured: \(error.localizedDescription)")
+            errorText += error.localizedDescription
+        }
+        
+        switch accountStatus {
+        case .restricted:
+            errorText += "iCloud is not available due to restrictions"
+        case .noAccount:
+            errorText += "There is no CloudKit account setup.\nYou can setup iCloud in the Settings app."
+        default:
+            break
+        }
+        
+        displayCloudKitNotAvailableError(errorText)
+    } // Prepare our excuse for why it's not working
+    
+    func displayCloudKitNotAvailableError(_ errorText: String) {
+        
+        DispatchQueue.main.async(execute: {
+            
+            let alertController = UIAlertController(title: "iCloud Synchronization Error", message: errorText, preferredStyle: .alert)
+            
+            let dismissAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil);
+            
+            alertController.addAction(dismissAction)
+            
+            if let appDelegate = UIApplication.shared.delegate,
+                let appWindow = appDelegate.window!,
+                let rootViewController = appWindow.rootViewController {
+                rootViewController.present(alertController, animated: true, completion: nil)
+            }
+        })
+    } // Give our excuse
     
     
 }

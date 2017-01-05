@@ -53,7 +53,9 @@ class Comment: SearchableRecord, CloudKitSyncable {
 extension CKRecord {
     
     convenience init(_ comment: Comment) {
-        guard let post = comment.post else { fatalError("Comment does not have a Post relationship") }
+        guard let post = comment.post else {
+            fatalError("Comment does not have a Post relationship")
+        }
         let postRecordID = post.cloudKitRecordID ?? CKRecord(post).recordID
         let recordID = CKRecordID(recordName: UUID().uuidString)
         

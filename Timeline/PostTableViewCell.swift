@@ -14,7 +14,12 @@ class PostTableViewCell: UITableViewCell {
     
     func update(withPost post: Post){
         postImageView.image = post.photo
-
+        
     }
-
+    
+    var post: Post? {
+        didSet {
+            update(withPost: post!)
+        }
+    }
 }
