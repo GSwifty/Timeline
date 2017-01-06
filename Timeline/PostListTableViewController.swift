@@ -25,6 +25,13 @@ class PostListTableViewController: UITableViewController, UISearchResultsUpdatin
         let nc = NotificationCenter.default
         nc.addObserver(self, selector: #selector(postsChanged(_:)), name: PostController.PostsChangedNotification, object: nil)
         
+        
+        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 40, height: 40))
+        imageView.contentMode = .scaleAspectFit
+        let image = #imageLiteral(resourceName: "instagrampop")
+        imageView.image = image
+        navigationItem.titleView = imageView
+        
     }
     
     

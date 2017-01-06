@@ -9,7 +9,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Timeline-->
+        <!--Post List Table View Controller-->
         <scene sceneID="lEr-Uh-sRg">
             <objects>
                 <tableViewController id="3eE-II-93f" customClass="PostListTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
@@ -49,7 +49,7 @@
                             <outlet property="delegate" destination="3eE-II-93f" id="oiy-gC-TEL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Timeline" id="oX5-H4-5Jl">
+                    <navigationItem key="navigationItem" id="oX5-H4-5Jl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pTM-5U-S3G">
                             <connections>
                                 <segue destination="2RH-J4-7ei" kind="show" identifier="toAddPost" id="wrN-Lk-kP5"/>
