@@ -25,8 +25,8 @@ class AddPostTableViewController: UITableViewController {
         if let image = image,
             let caption = commentTextField.text, !caption.isEmpty {
             
-            PostController.sharedController.createPost(image: image, caption: caption)
-            self.dismiss(animated: true, completion: nil)
+            PostController.sharedController.createPost(image: image, caption: caption, completion: nil)
+            dismiss(animated: true, completion: nil)
             
         } else {
             

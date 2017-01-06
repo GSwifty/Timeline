@@ -20,7 +20,7 @@ class Comment: SearchableRecord, CloudKitSyncable {
     var timestamp: Date
     var post: Post?
     
-    init(text: String, timestamp: Date = Date(), post: Post?) {
+    init(post: Post?, text: String, timestamp: Date = Date()) {
         self.text = text
         self.timestamp = timestamp
         self.post = post
@@ -39,7 +39,7 @@ class Comment: SearchableRecord, CloudKitSyncable {
         guard let timestamp = record.creationDate,
             let text = record[Comment.kText] as? String else { return nil }
         
-        self.init(text: text, timestamp: timestamp, post: nil)
+        self.init( post: nil, text: text, timestamp: timestamp)
         cloudKitRecordID = record.recordID
         
     }

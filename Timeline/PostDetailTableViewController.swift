@@ -14,7 +14,11 @@ class PostDetailTableViewController: UITableViewController {
     @IBOutlet weak var followButton: UIBarButtonItem!
     
     
-    var post: Post?
+    var post: Post? {
+        didSet {
+            updateView()
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,12 +33,14 @@ class PostDetailTableViewController: UITableViewController {
         
     }
     
+    
     func updateView() {
+        guard let post = post, isViewLoaded else { return }
         
-        imageView.image = post?.photo
+        imageView.image = post.photo
         tableView.reloadData()
         
-        guard let post = post else { return }
+        
         
         PostController.sharedController.checkSubscriptionToPostComments(post: post) { (subscribed) in
             
@@ -44,7 +50,7 @@ class PostDetailTableViewController: UITableViewController {
         }
     }
     
-    func postCommentsChanged(notification: NSNotification) {
+    func postCommentsChanged(notification: Notification) {
         guard let notificationPost = notification.object as? Post,
             let post = post, notificationPost === post else { return }
         updateView()
@@ -63,6 +69,7 @@ class PostDetailTableViewController: UITableViewController {
         let comment = post.comments[indexPath.row]
         
         cell.textLabel?.text = comment.text
+        cell.detailTextLabel?.text = comment.cloudKitRecordID?.recordName
         return cell
         
     }
@@ -84,9 +91,9 @@ class PostDetailTableViewController: UITableViewController {
         
         let addCommentAction = UIAlertAction(title: "OK", style: .default) { (_) in
             guard let comment = commentTextField?.text, !comment.isEmpty,
-            let post = self.post else { return }
+                let post = self.post else { return }
             
-            PostController.sharedController.addComment(post: post, commentText: comment)
+            let _ = PostController.sharedController.addComment(post: post, commentText: comment)
             self.tableView.reloadData()
         }
         

@@ -16,8 +16,7 @@ class SearchResultsTableViewController: UITableViewController {
         super.viewDidLoad()
         
     }
-    
-    
+
     
     // MARK: - Table view data source
     
@@ -28,10 +27,12 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath) as? PostTableViewCell,
-            let result = resultsArray[indexPath.row] as? Post else { return UITableViewCell() }
+            let result = resultsArray[indexPath.row] as? Post else {
+                return UITableViewCell()
+        }
         
         
-        cell.update(withPost: result)
+        cell.post = result
         return cell
     }
     

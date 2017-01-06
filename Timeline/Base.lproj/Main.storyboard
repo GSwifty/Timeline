@@ -9,36 +9,35 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Post List Table View Controller-->
+        <!--Timeline-->
         <scene sceneID="lEr-Uh-sRg">
             <objects>
                 <tableViewController id="3eE-II-93f" customClass="PostListTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="339" sectionHeaderHeight="28" sectionFooterHeight="28" id="dPs-pT-ZCM">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="339" sectionHeaderHeight="28" sectionFooterHeight="28" id="dPs-pT-ZCM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="separatorColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="postCell" rowHeight="339" id="vbk-4Z-fcv" customClass="PostTableViewCell" customModule="Timeline" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="339"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="vbk-4Z-fcv" id="T74-ge-Jxi">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="338.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="338"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="RIU-m7-Has">
                                             <rect key="frame" x="0.0" y="0.0" width="375" height="338"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="338" id="5W8-F1-WJx"/>
-                                            </constraints>
                                         </imageView>
                                     </subviews>
                                     <constraints>
-                                        <constraint firstAttribute="bottom" secondItem="RIU-m7-Has" secondAttribute="bottom" id="1Yo-Y2-J9c"/>
-                                        <constraint firstItem="RIU-m7-Has" firstAttribute="top" secondItem="T74-ge-Jxi" secondAttribute="top" id="NII-UA-xzU"/>
-                                        <constraint firstAttribute="trailing" secondItem="RIU-m7-Has" secondAttribute="trailing" id="Whm-mp-nbN"/>
-                                        <constraint firstItem="RIU-m7-Has" firstAttribute="leading" secondItem="T74-ge-Jxi" secondAttribute="leading" id="XsU-6V-yTv"/>
+                                        <constraint firstAttribute="bottom" secondItem="RIU-m7-Has" secondAttribute="bottom" id="7qW-en-s88"/>
+                                        <constraint firstItem="RIU-m7-Has" firstAttribute="top" secondItem="T74-ge-Jxi" secondAttribute="top" id="9O5-0u-Vht"/>
+                                        <constraint firstAttribute="trailing" secondItem="RIU-m7-Has" secondAttribute="trailing" id="eEz-c7-C4n"/>
+                                        <constraint firstItem="RIU-m7-Has" firstAttribute="leading" secondItem="T74-ge-Jxi" secondAttribute="leading" id="yDb-sP-TOe"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <color key="backgroundColor" white="0.56686951302819777" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
                                     <outlet property="postImageView" destination="RIU-m7-Has" id="v1V-Dy-W3W"/>
                                     <segue destination="hsA-Gq-XFt" kind="show" identifier="toPostDetail" id="4eD-RB-Wsg"/>
@@ -50,10 +49,10 @@
                             <outlet property="delegate" destination="3eE-II-93f" id="oiy-gC-TEL"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="oX5-H4-5Jl">
+                    <navigationItem key="navigationItem" title="Timeline" id="oX5-H4-5Jl">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="pTM-5U-S3G">
                             <connections>
-                                <segue destination="2RH-J4-7ei" kind="show" id="wrN-Lk-kP5"/>
+                                <segue destination="2RH-J4-7ei" kind="show" identifier="toAddPost" id="wrN-Lk-kP5"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -299,16 +298,16 @@
         <scene sceneID="es5-eu-Gn8">
             <objects>
                 <tableViewController storyboardIdentifier="SearchResultsTableViewController" id="NOx-M0-QRb" customClass="SearchResultsTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="re7-D1-WgI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="222" sectionHeaderHeight="28" sectionFooterHeight="28" id="re7-D1-WgI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" id="x3Q-A2-WPD">
-                                <rect key="frame" x="0.0" y="28" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" rowHeight="222" id="x3Q-A2-WPD">
+                                <rect key="frame" x="0.0" y="28" width="375" height="222"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x3Q-A2-WPD" id="0Ti-Iz-aVZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="221.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -321,7 +320,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="JuU-p9-eo3" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="617" y="1674"/>
+            <point key="canvasLocation" x="616.79999999999995" y="1673.6131934032985"/>
         </scene>
         <!--Photo Select View Controller-->
         <scene sceneID="eN7-VV-eY9">

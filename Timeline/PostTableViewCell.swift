@@ -12,14 +12,15 @@ class PostTableViewCell: UITableViewCell {
     
     @IBOutlet weak var postImageView: UIImageView!
     
-    func update(withPost post: Post){
+    func updateWithPost(post: Post){
         postImageView.image = post.photo
         
     }
     
     var post: Post? {
         didSet {
-            update(withPost: post!)
+            guard let post = post else { return }
+            updateWithPost(post: post)
         }
     }
 }

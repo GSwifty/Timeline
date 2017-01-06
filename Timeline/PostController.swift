@@ -44,7 +44,7 @@ class PostController {
     
     init(){
         
-        self.cloudKitManager = CloudKitManager()
+        cloudKitManager = CloudKitManager()
         
         performFullSync()
         
@@ -61,43 +61,41 @@ class PostController {
     {
         guard let data = UIImageJPEGRepresentation(image, 1.0) else { return }
         let post = Post(photoData: data)
+        posts.insert(post, at: 0)
+        let captionComment = addComment(post: post, commentText: caption)
         
         
         cloudKitManager.saveRecord(CKRecord(post)) { (record, error) in
-            guard let record = record else {
-                if let error = error {
-                    print("Error saving new post to CloudKit: \(error)")
-                    return
-                }
-                completion?(post)
-                return
-            }
+            guard let record = record else { return }
             post.cloudKitRecordID = record.recordID
             
+            if let error = error {
+                print("Error saving new post to CloudKit: \(error)")
+                
+            }
+            completion?(post)
         }
         
-        addComment(post: post, commentText: caption)
         
-        //        self.cloudKitManager.save(record: CKRecord(captionComment)) { (record, error) in
-        //            if let error = error {
-        //                print("Error saving new comment to CloudKit: \(error)")
-        //                return
-        //            }
-        //            captionComment.cloudKitRecordID = record?.recordID
-        //            completion?(post)
-        //        }
-    }
-    
-    @discardableResult func addComment(post: Post, commentText: String, completion: @escaping ((Comment) -> Void) = { _ in }) -> Comment {
-        let comment = Comment(text: commentText, post: post)
-        post.comments.append(comment)
-        
-        let record = CKRecord(comment)
-        
-        cloudKitManager.saveRecord(record) { (record, error) in
+        cloudKitManager.saveRecord(CKRecord(captionComment)) { (record, error) in
             if let error = error {
                 print("Error saving new comment to CloudKit: \(error)")
                 return
+            }
+            captionComment.cloudKitRecordID = record?.recordID
+            completion?(post)
+        }
+    }
+    
+    func addComment(post: Post, commentText: String, completion: @escaping ((Comment) -> Void) = { _ in }) -> Comment {
+        let comment = Comment(post: post, text: commentText)
+        post.comments.append(comment)
+        
+        
+        
+        cloudKitManager.saveRecord(CKRecord(comment)) { (record, error) in
+            if let error = error {
+                print("Error saving new comment to CloudKit: \(error)")
             }
             comment.cloudKitRecordID = record?.recordID
             completion(comment)
@@ -136,7 +134,7 @@ class PostController {
         
         var referencesToExclude = [CKReference]()
         
-        var predicate: NSPredicate!
+        var predicate: NSPredicate
         
         referencesToExclude = self.syncedRecords(ofType: type).flatMap {$0.cloudKitReference }
         predicate = NSPredicate(format: "NOT(recordID IN %@)", argumentArray: [referencesToExclude])
