@@ -21,8 +21,10 @@ class Post: CloudKitSyncable {
     var comments: [Comment]
     
     var photo: UIImage? {
+        
         guard let photoData = self.photoData else { return nil }
         return UIImage(data: photoData)
+        
     }
     
     init(photoData: Data?, timestamp: Date = Date(), comments: [Comment] = []){

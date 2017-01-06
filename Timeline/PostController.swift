@@ -62,27 +62,15 @@ class PostController {
         guard let data = UIImageJPEGRepresentation(image, 1.0) else { return }
         let post = Post(photoData: data)
         posts.insert(post, at: 0)
-        let captionComment = addComment(post: post, commentText: caption)
-        
         
         cloudKitManager.saveRecord(CKRecord(post)) { (record, error) in
             guard let record = record else { return }
             post.cloudKitRecordID = record.recordID
-            
+            let _ = self.addComment(post: post, commentText: caption)
             if let error = error {
                 print("Error saving new post to CloudKit: \(error)")
                 
             }
-            completion?(post)
-        }
-        
-        
-        cloudKitManager.saveRecord(CKRecord(captionComment)) { (record, error) in
-            if let error = error {
-                print("Error saving new comment to CloudKit: \(error)")
-                return
-            }
-            captionComment.cloudKitRecordID = record?.recordID
             completion?(post)
         }
     }
@@ -151,11 +139,9 @@ class PostController {
                 }
             case Comment.kType:
                 guard let postReference = record[Comment.kPost] as? CKReference,
-                    let postIndex = self.posts.index(where: { $0.cloudKitRecordID == postReference.recordID }),
                     let comment = Comment(record: record) else { return }
-                let post = self.posts[postIndex]
-                post.comments.append(comment)
-                comment.post = post
+                let matchingPost = PostController.sharedController.posts.filter({$0.cloudKitRecordID == postReference.recordID}).first
+                matchingPost?.comments.append(comment)
             default:
                 return
             }

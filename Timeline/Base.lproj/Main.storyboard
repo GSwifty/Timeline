@@ -63,6 +63,9 @@
                             <action selector="refreshControlValueChanged:" destination="3eE-II-93f" eventType="valueChanged" id="lbe-4L-s7n"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="hsA-Gq-XFt" kind="show" identifier="toPostDetailFromSearch" id="yqt-Yt-WAc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="kTl-Yv-lHd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -83,7 +86,7 @@
                                         <rect key="frame" x="0.0" y="35" width="375" height="350"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="fTr-lY-xiK" id="LPn-4S-KNP">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="349.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="349"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <containerView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="t06-br-jIP">
@@ -109,7 +112,7 @@
                                         <rect key="frame" x="0.0" y="421" width="375" height="81"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="0OY-8d-FEY" id="Cia-AO-EZz">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="80"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter your comment..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="siI-H4-OI6">
@@ -135,7 +138,7 @@
                                         <rect key="frame" x="0.0" y="538" width="375" height="44"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="6bb-pK-K9N" id="jDY-YH-hyu">
-                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43.5"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VdN-2r-77c">
@@ -238,7 +241,7 @@
                                 <rect key="frame" x="0.0" y="410" width="375" height="105"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y6r-Oo-xMG" id="or9-gG-Qf9">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="104.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="104"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableViewCellContentView>
                             </tableViewCell>
@@ -298,18 +301,32 @@
         <scene sceneID="es5-eu-Gn8">
             <objects>
                 <tableViewController storyboardIdentifier="SearchResultsTableViewController" id="NOx-M0-QRb" customClass="SearchResultsTableViewController" customModule="Timeline" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="222" sectionHeaderHeight="28" sectionFooterHeight="28" id="re7-D1-WgI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="267" sectionHeaderHeight="28" sectionFooterHeight="28" id="re7-D1-WgI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" rowHeight="222" id="x3Q-A2-WPD">
-                                <rect key="frame" x="0.0" y="28" width="375" height="222"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="searchResultsCell" rowHeight="267" id="x3Q-A2-WPD" customClass="PostTableViewCell" customModule="Timeline" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="28" width="375" height="267"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="x3Q-A2-WPD" id="0Ti-Iz-aVZ">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="221.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="HPn-ex-8Wa">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="266"/>
+                                        </imageView>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstAttribute="trailing" secondItem="HPn-ex-8Wa" secondAttribute="trailing" id="Fnj-HX-iGC"/>
+                                        <constraint firstItem="HPn-ex-8Wa" firstAttribute="leading" secondItem="0Ti-Iz-aVZ" secondAttribute="leading" id="Wn8-1X-O75"/>
+                                        <constraint firstAttribute="bottom" secondItem="HPn-ex-8Wa" secondAttribute="bottom" id="Z9J-KR-TpY"/>
+                                        <constraint firstItem="HPn-ex-8Wa" firstAttribute="top" secondItem="0Ti-Iz-aVZ" secondAttribute="top" id="pom-zk-35n"/>
+                                    </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="postImageView" destination="HPn-ex-8Wa" id="2va-SY-4dj"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -368,4 +385,7 @@
             <point key="canvasLocation" x="2431" y="884"/>
         </scene>
     </scenes>
+    <inferredMetricsTieBreakers>
+        <segue reference="yqt-Yt-WAc"/>
+    </inferredMetricsTieBreakers>
 </document>

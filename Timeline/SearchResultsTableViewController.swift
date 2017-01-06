@@ -10,6 +10,9 @@ import UIKit
 
 class SearchResultsTableViewController: UITableViewController {
     
+    
+    
+    
     var resultsArray: [SearchableRecord] = []
     
     override func viewDidLoad() {
@@ -27,9 +30,7 @@ class SearchResultsTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchResultsCell", for: indexPath) as? PostTableViewCell,
-            let result = resultsArray[indexPath.row] as? Post else {
-                return UITableViewCell()
-        }
+            let result = resultsArray[indexPath.row] as? Post else { return UITableViewCell() }
         
         
         cell.post = result
